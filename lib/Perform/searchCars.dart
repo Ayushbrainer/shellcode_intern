@@ -2,9 +2,11 @@ import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:shellcode_internship/Perform/Forced%20Mode/forcedCars.dart';
 import 'package:shellcode_internship/Search%20Cars/searchResult.dart';
 import 'package:shellcode_internship/colors.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
+import 'package:shellcode_internship/home%20page/settings.dart';
 
 // DateTime startDate = DateTime.now();
 // DateTime endDate = DateTime.now().add(Duration(days: 3));
@@ -32,27 +34,9 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
         startDate = date;
       });
     }, currentTime: DateTime.now(), locale: LocaleType.en);
-    // startDate = await showDatePicker(
-    //       context: context,
-    //       initialDate: new DateTime.now(),
-    //       firstDate: new DateTime(1960),
-    //       lastDate: new DateTime(2050),
-    //     ) ??
-    //     DateTime.now();
-
-    // setState(() {});
   }
 
   _endDatePicker() async {
-    // endDate = await showDatePicker(
-    //         context: context,
-    //         initialDate: DateTime.now().add(Duration(days: 3)),
-    //         firstDate: DateTime(1960),
-    //         lastDate: DateTime(2050)) ??
-    //     DateTime.now().add(Duration(days: 3));
-
-    // setState(() {});
-
     DatePicker.showDateTimePicker(context,
         showTitleActions: true,
         minTime: endDate,
@@ -72,7 +56,8 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List Cities = snapshot.data['Cities'];
-          return Container(
+          List cars = snapshot.data['Cars'];
+          return(isForced)? forceCars(cars: cars,Cities: Cities,): Container(
             width: size.width,
             height: size.height * 0.6,
             padding: EdgeInsets.symmetric(horizontal: 15),

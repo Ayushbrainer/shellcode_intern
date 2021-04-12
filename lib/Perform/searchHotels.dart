@@ -3,9 +3,11 @@ import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:shellcode_internship/Perform/Forced%20Mode/forcedHotel.dart';
 import 'package:shellcode_internship/Search%20Hotels/searchResults.dart';
 import 'package:shellcode_internship/colors.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
+import 'package:shellcode_internship/home%20page/settings.dart';
 
 int rooms = 1, adults = 1, children = 0;
 
@@ -33,26 +35,9 @@ class _srchHotelsState extends State<srchHotels> {
         startDate = date;
       });
     }, currentTime: DateTime.now(), locale: LocaleType.en);
-    // startDate = await showDatePicker(
-    //       context: context,
-    //       initialDate: new DateTime.now(),
-    //       firstDate: new DateTime(1960),
-    //       lastDate: new DateTime(2050),
-    //     ) ??
-    //     DateTime.now();
-
-    // setState(() {});
   }
 
   _endDatePicker() async {
-    // endDate = await showDatePicker(
-    //         context: context,
-    //         initialDate: DateTime.now().add(Duration(days: 3)),
-    //         firstDate: DateTime(1960),
-    //         lastDate: DateTime(2050)) ??
-    //     DateTime.now().add(Duration(days: 3));
-
-    // setState(() {});
 
     DatePicker.showDatePicker(context,
         showTitleActions: true,
@@ -73,10 +58,12 @@ class _srchHotelsState extends State<srchHotels> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List cities = snapshot.data['Cities'];
+          List hotels = snapshot.data['Hotels'];
           return Container(
             width: size.width,
             height: size.height * 0.6,
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(),
+            padding: EdgeInsets.symmetric(horizontal: 1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -101,11 +88,12 @@ class _srchHotelsState extends State<srchHotels> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: ToSearch(context, cities),
+                  child:(isForced)? forcedHotelDropdown(hotels: hotels,): ToSearch(context, cities),
                 ),
                 Container(
                   width: size.width,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
                         child: Column(
@@ -162,7 +150,7 @@ class _srchHotelsState extends State<srchHotels> {
                   ),
                 ),
                 peopleCount(),
-                TextButton(onPressed: (){
+                (isForced)?Text(""):TextButton(onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>resultPage(nights: endDate.difference(startDate),)));
                 }, child: Container(
                   width: size.width*0.8,
@@ -178,7 +166,8 @@ class _srchHotelsState extends State<srchHotels> {
                      fontSize: size.width*0.06
                     ),),
                   ),
-                ))
+                )),
+                (isForced)? tripContainer(3) :Text("")
               ],
             ),
           );
@@ -190,16 +179,42 @@ class _srchHotelsState extends State<srchHotels> {
     );
   }
 
+  Widget tripContainer(int no){
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height*0.29,
+      width: size.width,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.purpleAccent[400]),
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      ),
+      margin: EdgeInsets.symmetric(horizontal: size.width*0.06,vertical: size.height*0.0),
+      padding: EdgeInsets.all(5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            height: size.height*0.2,
+            width: size.width,
+            child: Image.asset("assets/images/bottomImage$no.jpeg",fit: BoxFit.fill,),
+          ),
+          TextButton(onPressed: (){}, child: Text("See Details"))
+        ],
+      ),
+    );
+  }
+
   Widget ToSearch(BuildContext context, List cities) {
     Size size = MediaQuery.of(context).size;
     return Container(
-        height: size.height * 0.06,
+        height: size.height * 0.03,
         width: size.width * 0.9,
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black38),
             borderRadius: BorderRadius.all(Radius.circular(15))),
-        child: Center(
+        child:Center(
           child: toSearch = AutoCompleteTextField(
               decoration: InputDecoration(
                 hintText: "To Destination",

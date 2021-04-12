@@ -2,10 +2,12 @@ import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:shellcode_internship/Perform/Forced%20Mode/forcedFlights.dart';
 import 'package:shellcode_internship/Perform/searchCars.dart';
 import 'package:shellcode_internship/Perform/searchHotels.dart';
 import 'package:shellcode_internship/Search%20Flights/searchResult.dart';
 import 'package:shellcode_internship/colors.dart';
+import 'package:shellcode_internship/home%20page/settings.dart';
 
 String toField, fromField;
 
@@ -72,8 +74,9 @@ class _srchFlightsState extends State<srchFlights> {
     return FutureBuilder(
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List airlines = snapshot.data['Cities'];
-          return Container(
+          List cities = snapshot.data['Cities'];
+          List flights = snapshot.data['flights'];
+          return (isForced)? forceFlight(Cities: cities,flights: flights,) : Container(
             width: size.width,
             height: size.height * 0.6,
             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -101,7 +104,7 @@ class _srchFlightsState extends State<srchFlights> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: FromSearch(context, airlines),
+                  child: FromSearch(context, cities),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -112,7 +115,7 @@ class _srchFlightsState extends State<srchFlights> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(9.0),
-                  child: ToSearch(context, airlines),
+                  child: ToSearch(context, cities),
                 ),
                 Row(
                   children: [

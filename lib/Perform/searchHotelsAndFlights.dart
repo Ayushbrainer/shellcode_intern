@@ -3,9 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:shellcode_internship/Perform/Forced%20Mode/forcedHotelAndFlights.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
 import 'package:shellcode_internship/colors.dart';
 import 'package:shellcode_internship/Search HotelsAndFlights/searchHotelResults.dart';
+import 'package:shellcode_internship/home%20page/settings.dart';
 
 class srchCars extends StatefulWidget {
   @override
@@ -52,8 +54,10 @@ class _srchCarsState extends State<srchCars> {
     return FutureBuilder(
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List airlines = snapshot.data['Cities'];
-          return Container(
+          List cities = snapshot.data['Cities'];
+          List airlines = snapshot.data['flights'];
+          List hotels = snapshot.data['Hotels'];
+          return(isForced)? forceFlightAndHotels(Cities: cities,hotels: hotels,flights: airlines,) : Container(
             width: size.width,
             height: size.height * 0.6,
             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -79,7 +83,7 @@ class _srchCarsState extends State<srchCars> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: FromSearch(context, airlines),
+                  child: FromSearch(context, cities),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -90,7 +94,7 @@ class _srchCarsState extends State<srchCars> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: ToSearch(context, airlines),
+                  child: ToSearch(context, cities),
                 ),
                 Row(
                   children: [

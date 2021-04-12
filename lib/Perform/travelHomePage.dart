@@ -54,7 +54,7 @@ class _performHomeState extends State<performHome> {
           ),
           Container(
             // width: size.width,
-            height: size.height*0.75,
+            height: (isForced)?size.height*0.91:size.height*0.78,
             child: PageView(
               controller: _pageController,
               physics: NeverScrollableScrollPhysics(),

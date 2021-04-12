@@ -8,6 +8,7 @@ import 'package:shellcode_internship/home%20page/rounded_input_field.dart';
 String addressUrl = "www.wholesale.com";
 String currency = "\$";
 File imageFile;
+bool isForced = false;
 
 class settings extends StatefulWidget {
   @override
@@ -15,7 +16,6 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
-  bool isForced = false;
   bool isPreloaded = false;
   bool isPerformance = false;
   String changeCurrency;
