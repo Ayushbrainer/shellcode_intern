@@ -7,6 +7,8 @@ import 'package:shellcode_internship/Perform/searchFlights.dart';
 String selectedAirline = "";
 
 class resultPage extends StatefulWidget {
+  int hotelNo;
+  resultPage({this.hotelNo});
   @override
   _resultPageState createState() => _resultPageState();
 }
@@ -48,14 +50,14 @@ class _resultPageState extends State<resultPage> {
             padding: const EdgeInsets.only(top:8.0),
             child: travelInfoContainer(),
           ),
-          flightContainer(no: 1,),
-          flightContainer(no: 2,),
-          flightContainer(no: 3,),
-          flightContainer(no: 4,),
-          flightContainer(no: 5,),
-          flightContainer(no: 6,),
-          flightContainer(no: 7,),
-          flightContainer(no: 8,),
+          flightContainer(no: 1,hotelNo: widget.hotelNo,),
+          flightContainer(no: 2,hotelNo: widget.hotelNo,),
+          flightContainer(no: 3,hotelNo: widget.hotelNo,),
+          flightContainer(no: 4,hotelNo: widget.hotelNo,),
+          flightContainer(no: 5,hotelNo: widget.hotelNo,),
+          flightContainer(no: 6,hotelNo: widget.hotelNo,),
+          flightContainer(no: 7,hotelNo: widget.hotelNo,),
+          flightContainer(no: 8,hotelNo: widget.hotelNo,),
           // Container(
           //  width: size.width,
           //  child: ListView.builder(itemBuilder: (context,index){

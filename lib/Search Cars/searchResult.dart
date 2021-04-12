@@ -4,6 +4,8 @@ import 'package:shellcode_internship/Search%20Cars/resultCarCont.dart';
 import 'package:shellcode_internship/home page/settings.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
 
+List<int> carPrices = <int>[35,45,200,125,220,49,185,199,25];
+
 class resultPage extends StatefulWidget {
   @override
   _resultPageState createState() => _resultPageState();

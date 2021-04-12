@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
 import 'package:shellcode_internship/Search%20Cars/resultCarCont.dart';
+import 'package:shellcode_internship/Search%20Cars/searchResult.dart';
 import 'package:shellcode_internship/Search%20Hotels/resultHotelsContainer.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
 import 'package:shellcode_internship/main.dart';
@@ -129,6 +130,8 @@ class confirmBooking extends StatelessWidget {
 }
 
 class bottomSheet extends StatelessWidget {
+  int no;
+  bottomSheet({this.no});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -163,7 +166,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency 25",
+                    "$currency ${carPrices[no-1]}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

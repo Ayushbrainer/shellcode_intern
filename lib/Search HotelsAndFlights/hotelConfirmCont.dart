@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
 import 'package:shellcode_internship/Perform/searchHotels.dart';
+import 'package:shellcode_internship/Search%20Hotels/resultHotelsContainer.dart';
+import 'package:shellcode_internship/Search%20HotelsAndFlights/resultHotelsContainer.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/searchHotelResults.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
 
 class hotel_booking_confirm extends StatelessWidget {
+  int no;
+  hotel_booking_confirm({this.no});
   Duration nights = endDate.difference(startDate);
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,7 @@ class hotel_booking_confirm extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Text("$currency ${79*nights.inDays}",style: highlightedText,),
+            child: Text("$currency ${selectedHotelPrice*nights.inDays}",style: highlightedText,),
           ),
           Padding(
             padding: const EdgeInsets.all(3.0),

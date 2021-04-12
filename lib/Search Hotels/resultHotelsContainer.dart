@@ -4,7 +4,7 @@ import 'package:shellcode_internship/Search%20Hotels/bookingConfirmPage.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
 
 List<String> hotelsList = ["Hilton","Holiday Inn","Best Western","Ramada","Travel Lodge","Hyatt","The WestIn","InterContinetal","Radisson Blu","Marriott"];
-List<int> hotelPrices = <int>[];
+List<int> hotelPrices = <int>[99,79,59,76,85,119,199,129,220,196];
 
 class flightContainer extends StatefulWidget {
   int no;
@@ -72,7 +72,7 @@ class _flightContainerState extends State<flightContainer> {
                padding: const EdgeInsets.all(9.0),
                child: Column(
                  children: [
-                   Text("$currency 459",style: TextStyle(
+                   Text("$currency ${hotelPrices[widget.no-1]}",style: TextStyle(
                      fontSize: size.width*0.035,
                      fontWeight: FontWeight.w700
                    ),),

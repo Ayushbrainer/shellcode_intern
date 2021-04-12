@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:shellcode_internship/Perform/searchFlights.dart';
 import 'package:shellcode_internship/Search%20Flights/firstCont.dart';
 import 'package:shellcode_internship/Search%20Flights/resultFlightsContainer.dart';
 import 'package:shellcode_internship/Search%20Flights/secondCont.dart';
@@ -93,12 +90,14 @@ class confirmBooking extends StatelessWidget {
           ),
         ],
       ),
-      bottomSheet: bottomSheet(),
+      bottomSheet: bottomSheet(no: no,),
     );
   }
 }
 
 class bottomSheet extends StatelessWidget {
+  int no;
+  bottomSheet({this.no});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -133,7 +132,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency 459",
+                    "$currency ${flightsPrices[no-1]}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

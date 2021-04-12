@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shellcode_internship/Perform/searchFlights.dart';
+import 'package:shellcode_internship/Search%20Flights/resultFlightsContainer.dart';
+import 'package:shellcode_internship/Search%20Hotels/resultHotelsContainer.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/flightConfirmCont.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/hotelConfirmCont.dart';
+import 'package:shellcode_internship/Search%20HotelsAndFlights/resultFlightsContainer.dart';
+import 'package:shellcode_internship/Search%20HotelsAndFlights/resultHotelsContainer.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
 import 'package:shellcode_internship/main.dart';
 
 class flight_and_hotels_booking_confirm extends StatefulWidget {
+  int flightNo,hotelNo;
+  flight_and_hotels_booking_confirm({this.flightNo,this.hotelNo});
   @override
   _flight_and_hotels_booking_confirmState createState() => _flight_and_hotels_booking_confirmState();
 }
@@ -84,7 +90,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
               borderRadius: BorderRadius.all(Radius.circular(16))
               ),
           ),
-          hotel_booking_confirm(),
+          hotel_booking_confirm(no: widget.hotelNo,),
            Container(
             width: size.width,
             height: 5,
@@ -103,7 +109,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
             )),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text("$flightsAndHotelsReview",style: TextStyle(
               color: Color(0xFFbf00ff),
               fontSize: size.width*0.056,
@@ -114,7 +120,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
           )
         ],
       ),
-      bottomSheet: bottomSheet(),
+      bottomSheet: bottomSheet(hotelNo: widget.hotelNo,flightNo: widget.flightNo,),
     );
   }
 }
@@ -122,10 +128,14 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
 
 
 class bottomSheet extends StatelessWidget {
-    Duration nights = endDate.difference(startDate);
+  Duration nights = endDate.difference(startDate);
+  int hotelNo,flightNo;
+  bottomSheet({this.flightNo,this.hotelNo});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    int totalPrice = (nights.inDays*selectedHotelPrice)+selectedFlightPrice;
+    //print(totalPrice);
     return Container(
       width: size.width,
       height: size.height * 0.12,
@@ -157,7 +167,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${nights.inDays*79 + 459}",
+                    "$currency $totalPrice",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

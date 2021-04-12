@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shellcode_internship/Search%20Cars/bookingConfirmPage.dart';
+import 'package:shellcode_internship/Search%20Cars/searchResult.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
 
 List<String> cars = [
@@ -54,7 +55,7 @@ class carContainer extends StatelessWidget {
                padding: const EdgeInsets.all(9.0),
                child: Column(
                  children: [
-                   Text("$currency 24",style: TextStyle(
+                   Text("$currency ${carPrices[no-1]}",style: TextStyle(
                      fontSize: size.width*0.035
                    ),),
                    Text("Per day",style:TextStyle(

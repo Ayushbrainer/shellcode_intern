@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:shellcode_internship/Search%20Flights/resultFlightsContainer.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/bookingConfirmPage.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/searchResult.dart';
 import 'package:shellcode_internship/home page/settings.dart';
 import 'package:shellcode_internship/randomTimeGenerator.dart';
 
-List<int> flightsPrices = <int>[459];
+// List<int> flightsPrices = <int>[459];
+
+int selectedFlightPrice;
 
 List<String> airlines = <String>[
     "American Airlines","British Ailines","Delta Airlines",
@@ -13,8 +16,8 @@ List<String> airlines = <String>[
   ];
 
 class flightContainer extends StatefulWidget {
-  int no;
-  flightContainer({this.no});
+  int no,hotelNo;
+  flightContainer({this.no,this.hotelNo});
 
   @override
   _flightContainerState createState() => _flightContainerState();
@@ -63,7 +66,7 @@ class _flightContainerState extends State<flightContainer> {
              ),
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("$currency 459",style: TextStyle(
+               child: Text("$currency ${flightsPrices[widget.no-1]}",style: TextStyle(
                  fontSize: size.width*0.035
                ),),
              )
@@ -91,8 +94,9 @@ class _flightContainerState extends State<flightContainer> {
             child: TextButton(onPressed: (){
               setState(() {
                 selectedAirline = airlines[widget.no-1];
+                selectedFlightPrice = flightsPrices[widget.no-1];
               });
-              print(selectedAirline);
+              print(selectedAirline+selectedFlightPrice.toString());
               Navigator.push(context, MaterialPageRoute(builder: (context)=>flight_and_hotels_booking_confirm()));
             },
             style: ButtonStyle(),

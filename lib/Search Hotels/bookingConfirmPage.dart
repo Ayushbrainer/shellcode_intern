@@ -108,12 +108,14 @@ class confirmBooking extends StatelessWidget {
           ),
         ],
       ),
-      bottomSheet: bottomSheet(),
+      bottomSheet: bottomSheet(no: no,),
     );
   }
 }
 
 class bottomSheet extends StatelessWidget {
+  int no;
+  bottomSheet({this.no});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -148,7 +150,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency 79",
+                    "$currency ${hotelPrices[no-1]}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

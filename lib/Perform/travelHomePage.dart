@@ -50,7 +50,7 @@ class _performHomeState extends State<performHome> {
           Container(
             width: size.width,
             height: size.height*0.3,
-            child: (imageFile!=null)?Image.file(imageFile,fit: BoxFit.fill,):Image.asset("assets/images/customise1.png",fit: BoxFit.fill,),
+            child: (imageFile!=null)?Image.file(imageFile,fit: BoxFit.fill,):Image.asset("assets/images/homePage.jpeg",fit: BoxFit.fill,),
           ),
           Container(
             // width: size.width,
@@ -65,10 +65,40 @@ class _performHomeState extends State<performHome> {
                 srch_Hotels_Flights(),
               ],
             ),
-          )
+          ),
+          tripContainer(0),
+          tripContainer(1),
+          tripContainer(3)
         ],
       ),
 
+    );
+  }
+
+
+  Widget tripContainer(int no){
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height*0.35,
+      width: size.width,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.purpleAccent[400]),
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      ),
+      margin: EdgeInsets.symmetric(horizontal: size.width*0.06,vertical: size.height*0.04),
+      padding: EdgeInsets.all(5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            height: size.height*0.25,
+            width: size.width,
+            child: Image.asset("assets/images/bottomImage$no.jpeg",fit: BoxFit.fill,),
+          ),
+          TextButton(onPressed: (){}, child: Text("See Details"))
+        ],
+      ),
     );
   }
 }

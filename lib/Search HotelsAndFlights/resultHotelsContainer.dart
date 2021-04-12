@@ -1,12 +1,15 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shellcode_internship/Search HotelsAndFlights/resultFlightsContainer.dart';
+import 'package:shellcode_internship/Search%20Hotels/resultHotelsContainer.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/searchHotelResults.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/searchResult.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
 
 List<String> hotelsList = ["Hilton","Holiday Inn","Best Western","Ramada","Travel Lodge","Hyatt","The WestIn","InterContinetal","Radisson Blu","Marriott"];
-List<int> hotelPrices = <int>[];
+// List<int> hotelPrices = <int>[];
+
+int selectedHotelPrice;
 
 class hotelsContainer extends StatefulWidget {
   int no;
@@ -74,7 +77,7 @@ class _hotelsContainerState extends State<hotelsContainer> {
                padding: const EdgeInsets.all(9.0),
                child: Column(
                  children: [
-                   Text("$currency 459",style: TextStyle(
+                   Text("$currency ${hotelPrices[widget.no-1]}",style: TextStyle(
                      fontSize: size.width*0.035,
                      fontWeight: FontWeight.w700
                    ),),
@@ -94,9 +97,10 @@ class _hotelsContainerState extends State<hotelsContainer> {
                 TextButton(onPressed: (){
                   setState(() {
                     selectedHotel = hotelsList[widget.no-1];
+                    selectedHotelPrice = hotelPrices[widget.no-1];
                   });
-                  print(selectedHotel);
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>resultPage()));
+                  print(selectedHotel+selectedHotelPrice.toString());
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>resultPage(hotelNo: widget.no,)));
                 },
                 style: ButtonStyle(),
                 child: Container(

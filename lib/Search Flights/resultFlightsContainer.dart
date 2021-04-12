@@ -4,7 +4,7 @@ import 'package:shellcode_internship/Search%20Flights/bookingConfirmPage.dart';
 import 'package:shellcode_internship/home page/settings.dart';
 import 'package:shellcode_internship/randomTimeGenerator.dart';
 
-List<int> flightsPrices = <int>[459];
+List<int> flightsPrices = <int>[459,450,599,386,349,375,425,549,559,649];
 
 List<String> airlines = <String>[
     "American Airlines","British Ailines","Delta Airlines",
@@ -56,7 +56,7 @@ class flightContainer extends StatelessWidget {
              ),
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("$currency 459",style: TextStyle(
+               child: Text("$currency ${flightsPrices[no-1]}",style: TextStyle(
                  fontSize: size.width*0.035
                ),),
              )

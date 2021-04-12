@@ -3,6 +3,8 @@ import 'package:shellcode_internship/Perform/searchFlights.dart';
 import 'package:shellcode_internship/Perform/searchHotels.dart';
 import 'package:shellcode_internship/Search%20HotelsAndFlights/searchResult.dart';
 import 'package:shellcode_internship/home%20page/settings.dart';
+import 'package:shellcode_internship/Search Flights/resultFlightsContainer.dart';
+import 'package:shellcode_internship/Search HotelsAndFlights/resultFlightsContainer.dart';
 
 class flightBookingConfirmContainer extends StatefulWidget {
   @override
@@ -76,7 +78,7 @@ class _flightBookingConfirmContainerState extends State<flightBookingConfirmCont
             color: Color(0xFFbf00ff),
             fontSize: size.width*0.045,
           ),),
-          Text("$currency 459",style: TextStyle(
+          Text("$currency $selectedFlightPrice",style: TextStyle(
             color: Color(0xFFbf00ff),
             fontSize: size.width*0.052,
             fontWeight: FontWeight.bold
